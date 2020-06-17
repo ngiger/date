@@ -46,6 +46,13 @@ class TestDateMarshal < Test::Unit::TestCase
     assert_equal(d, d2)
     assert_equal(d.start, d2.start)
     assert_instance_of(String, d2.to_s)
+
+  end
+
+  def test_marshal_backward_compatibility
+      hexdump = "0408553a09446174655b0b690069006902c0a8553a0d526174696f6e616c5b076c2b0800001a71180269029dff6900660c32323939313631"
+      binary = [hexdump].pack('H*')
+      obj = Marshal.load(binary)
   end
 
   def test_memsize
